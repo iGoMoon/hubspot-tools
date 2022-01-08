@@ -1,0 +1,12 @@
+{
+	"scripts": {
+		"local": "mix",
+		"watch": "mix watch -- --env hsAutoUpload=true",
+		"build": "mix -- --env hsAutoUpload=true",
+		"deploy": "mix --production -- --env hsAutoUpload=true"
+	},
+	"devDependencies": {
+		"@igomoon/laravel-mix-hubspot": "^1.0.0",
+		"laravel-mix": "^6.0.39"
+	}
+}

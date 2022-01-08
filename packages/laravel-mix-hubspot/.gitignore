@@ -1,0 +1,5 @@
+hubspot.config.yml
+dist/
+.idea/
+node_modules
+REF
