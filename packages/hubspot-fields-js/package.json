@@ -7,7 +7,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/iGoMoon/hubspot-fields-js" 
+    "url": "https://github.com/iGoMoon/hubspot-fields-js"
   },
   "publishConfig": {
     "access": "public"
