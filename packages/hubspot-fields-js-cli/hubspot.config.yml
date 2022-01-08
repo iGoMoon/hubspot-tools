@@ -1,0 +1,12 @@
+defaultPortal: sb
+portals:
+  - name: sb
+    portalId: 19824542
+    authType: personalaccesskey
+    auth:
+      tokenInfo:
+        accessToken: >-
+          CNaRvarKLxIIAA0ADAAA4AEYnv-5CSCuppUFKO7pDDIUBG4BxhMyzA6sdFgiiAle_J95FR46KAAABEEAAAB4AAAAAAAAAACAAQAAAAAABMAAwAdg_v8xAAAAAAAAAGBCFDhGz6DtLzTZ0ADRSQMbFba_ek-MSgNuYTFSAFoA
+        expiresAt: '2021-10-22T00:03:29.119Z'
+    personalAccessKey: >-
+      CiRhNzcxNjEyYy00NjcyLTRmMTQtODhiNC1iM2Q0ZDQ1NjM1YWUQnv-5CRiuppUFKhkABeaRgs5maCwl2LkE9pMMi1Vd33hn6ehgSgNuYTE

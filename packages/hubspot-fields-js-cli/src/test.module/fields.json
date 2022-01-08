@@ -1,0 +1,107 @@
+[
+    {
+        "required": false,
+        "locked": false,
+        "help_text": "",
+        "inline_help_text": "",
+        "name": "text",
+        "label": "Text",
+        "type": "text"
+    },
+    {
+        "name": "group",
+        "label": "Group",
+        "required": false,
+        "locked": false,
+        "children": [
+            {
+                "required": false,
+                "locked": false,
+                "help_text": "",
+                "inline_help_text": "",
+                "name": "enable",
+                "label": "Enable Field",
+                "type": "boolean",
+                "id": "4f52fb50ab231d9acb66e8fa1087c920406ad7ac3cf42bfedbc7b0a816240e71",
+                "display": "toggle",
+                "default": true
+            },
+            {
+                "required": false,
+                "locked": false,
+                "help_text": "",
+                "inline_help_text": "",
+                "name": "number",
+                "label": "Number Fields",
+                "type": "number",
+                "visibility": {
+                    "controlling_field": "4f52fb50ab231d9acb66e8fa1087c920406ad7ac3cf42bfedbc7b0a816240e71",
+                    "controlling_value_regex": true,
+                    "operator": "EQUAL"
+                }
+            },
+            {
+                "required": false,
+                "locked": false,
+                "help_text": "",
+                "inline_help_text": "Enter a CSS class for additional styling",
+                "name": "css_class",
+                "label": "CSS Class",
+                "type": "text",
+                "validation_regex": "-?[a-zA-Z]+[a-zA-Z0-9- ]+"
+            }
+        ],
+        "type": "group",
+        "inline_help_text": "",
+        "help_text": "",
+        "default": {}
+    },
+    {
+        "name": "group2",
+        "label": "Group 2",
+        "required": false,
+        "locked": false,
+        "children": [
+            {
+                "required": false,
+                "locked": false,
+                "help_text": "",
+                "inline_help_text": "",
+                "name": "enable",
+                "label": "Enable Field",
+                "type": "boolean",
+                "id": "14ddab5222509c50017bf756e1933cb0e1d8f585ad32b08afd058d45eed77fa1",
+                "display": "toggle",
+                "default": true
+            },
+            {
+                "required": false,
+                "locked": false,
+                "help_text": "",
+                "inline_help_text": "",
+                "name": "number",
+                "label": "Number Fields",
+                "type": "number",
+                "visibility": {
+                    "controlling_field": "14ddab5222509c50017bf756e1933cb0e1d8f585ad32b08afd058d45eed77fa1",
+                    "controlling_value_regex": true,
+                    "operator": "EQUAL"
+                }
+            },
+            {
+                "required": false,
+                "locked": false,
+                "help_text": "",
+                "inline_help_text": "Enter a CSS class for additional styling",
+                "name": "css_class",
+                "label": "CSS Class",
+                "type": "text",
+                "validation_regex": "-?[a-zA-Z]+[a-zA-Z0-9- ]+"
+            }
+        ],
+        "type": "group",
+        "inline_help_text": "",
+        "help_text": "",
+        "default": {}
+    }
+]
