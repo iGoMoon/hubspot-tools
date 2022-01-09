@@ -16,7 +16,7 @@
 		"check:deps": "node bin/depcheck.js",
 		"check:lint": "eslint ./packages",
 		"prettier:write": "prettier --write packages/**/*.{js,json}",
-		"publish:release": "npx lerna publish",
+		"publish:release": "npx lerna publish from-package",
 		"publish:prerelease": "npx lerna publish prerelease --preid beta --dist-tag next"
 	},
 	"workspaces": [
