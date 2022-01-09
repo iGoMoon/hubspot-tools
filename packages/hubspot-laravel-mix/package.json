@@ -1,12 +1,15 @@
 {
-	"name": "@igomoon/laravel-mix-hubspot",
-	"label": "laravel-mix-hubspot",
+	"name": "@igomoon/hubspot-laravel-mix",
+	"label": "hubspot-laravel-mix",
 	"author": "iGoMoon",
 	"version": "1.0.0",
 	"license": "Apache-2.0",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/iGoMoon/laravel-mix-hubspot"
+		"url": "https://github.com/iGoMoon/hubspot-tools"
+	},
+	"engines": {
+		"node": ">=10"
 	},
 	"publishConfig": {
 		"access": "public"
