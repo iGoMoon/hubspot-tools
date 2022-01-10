@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+
+## [1.3.0] - 2022-11-01
+- FIX: Recent changes to the compilation assets, were prevent assets from being emitted to the HubSpotAutoUploadPlugin for upload.
+    - Plugin will now correctly check if the asset is emitted
+- Field JS files will no only be transformed if asset was emitted, it is the first compile or a file in one of the `extraDirsToWatch` was modifed
+    - If a file in one of the `extraDirsToWatch` was modified, then ALL fields.js file found in the `src` directory will be transformed.
+- Plugin Now uses the Webpack Logger Interface, similar to how the HubSpotAutoUploadPlugin does it, to report when a file is being transformed.
+    - eg. `<i> [FieldsPlugin] FieldsJS is tranforming src/hubl/modules/test.module/fields.js`
+
 ## [1.2.0] - 2022-01-01
 - BREAKING CHANGE: Js Partials are now imported relative to src file, NOT from final dist file. Field JS tranformation using the src file and then updates webpack's emission functionlity to properly handle the upload.
     - A special mention and massive thanks goes out to [BJ Szyjakowski](https://github.com/jazzyclimber) from Spingroup for his contribution and collaboration on this feature.
