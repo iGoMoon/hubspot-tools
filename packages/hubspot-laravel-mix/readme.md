@@ -1,5 +1,7 @@
 # Laravel Mix HubSpot Extension <!-- omit in toc -->
 
+<img src="https://img.shields.io/badge/Version-1.0.0-brightgreen" />
+
 This is a Laravel Mix Extension for HubSpot Local Development
 
 ```javascript

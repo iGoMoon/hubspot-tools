@@ -8,7 +8,7 @@ class MixHubspot {
 		return [
 			'copy-webpack-plugin@^8.1.1',
 			'@hubspot/webpack-cms-plugins/HubSpotAutoUploadPlugin@^3.0.9',
-			'@igomoon/hubspot-fields-js@^1.2.0',
+			'@igomoon/hubspot-fields-js@^1.3.0',
 			'webpack-build-notifier@^2.1.1'
 		];
 	}
