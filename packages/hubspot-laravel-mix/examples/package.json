@@ -6,7 +6,7 @@
 		"deploy": "mix --production -- --env hsAutoUpload=true"
 	},
 	"devDependencies": {
-		"@igomoon/laravel-mix-hubspot": "^1.0.0",
+		"@igomoon/hubspot-laravel-mix": "^1.0.0",
 		"laravel-mix": "^6.0.39"
 	}
 }

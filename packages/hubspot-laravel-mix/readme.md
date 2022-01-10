@@ -4,7 +4,7 @@ This is a Laravel Mix Extension for HubSpot Local Development
 
 ```
 let mix = require('laravel-mix');
-(require('@igomoon/laravel-mix-hubspot')(mix))
+(require('@igomoon/hubspot-laravel-mix')(mix))
 ```
 
 ### [Example package.json](examples/package.json)
@@ -17,7 +17,7 @@ let mix = require('laravel-mix');
 		"deploy": "mix --production -- --env hsAutoUpload=true"
 	},
 	"devDependencies": {
-		"@igomoon/laravel-mix-hubspot": "^1.0.0",
+		"@igomoon/hubspot-laravel-mix": "^1.0.0",
 		"laravel-mix": "^6.0.39"
 	}
 }
@@ -27,7 +27,7 @@ let mix = require('laravel-mix');
 
 ```javascript
 let mix = require('laravel-mix');
-(require('@igomoon/laravel-mix-hubspot')(mix))
+(require('@igomoon/hubspot-laravel-mix')(mix))
 
 mix.js(`src/resources/js/main.js`, `assets/js/main.js`);
 

@@ -1,4 +1,4 @@
-// Example: require('@igomoon/laravel-mix-hubspot')(mix)
+// Example: require('@igomoon/hubspot-laravel-mix')(mix)
 
 module.exports = (mix = null) => { 
 	if (!!mix) {

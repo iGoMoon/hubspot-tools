@@ -1,5 +1,5 @@
 let mix = require('laravel-mix');
-(require('@igomoon/laravel-mix-hubspot')(mix))
+(require('@igomoon/hubspot-laravel-mix')(mix))
 
 mix.js(`src/resources/js/main.js`, `assets/js/main.js`);
 
