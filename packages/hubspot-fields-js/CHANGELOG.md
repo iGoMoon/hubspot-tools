@@ -3,7 +3,35 @@
 All notable changes to this project will be documented in this file.
 
 ## [1.2.0] - 2022-01-01
-- Js Partials are now imported relative to src file, NOT from final dist file. Field JS tranformation using the src file and then updates webpack's emission functionlity to properly handle the upload.
+- BREAKING CHANGE: Js Partials are now imported relative to src file, NOT from final dist file. Field JS tranformation using the src file and then updates webpack's emission functionlity to properly handle the upload.
+    - A special mention and massive thanks goes out to [BJ Szyjakowski](https://github.com/jazzyclimber) from Spingroup for his contribution and collaboration on this feature.
+
+```javascript
+/*
+Let’s say your webpack’s project folder structure looked like this.
+- src
+	- fieldPartials
+		- partial.js
+	- modules
+		- example.module
+			- fields.js
+			- module.html
+			- meta.json
+- dist
+	- modules
+		- example.module
+			- fields.js
+			- module.html
+			- meta.json
+*/
+
+//In < v1.2.0, you would include the file, relative to the dist folder like this:
+let partial = require(`../../../src/fieldPartials/partial.js`)
+
+//In >= v1.2.0, you can include it relative to the src folder: 
+let partial = require(`../../fieldPartials/partial.js`)
+```
+
 - Plugin now accepts options
      - `src`: The starting directory to search for field.js files eg. "./src"
      - `extraDirsToWatch`: an array of relative paths to directories that will trigger a recompilation. Useful for FieldJS partials
