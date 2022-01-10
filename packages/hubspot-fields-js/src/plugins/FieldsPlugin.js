@@ -3,6 +3,7 @@ const glob = require('glob');
 const path = require('path'); // Use path to ensure files are resolved correctly across all OS
 
 const FieldTransformer = require('../fields/FieldTransformer');
+const pluginName = 'FieldsPlugin';
 
 class FieldsPlugin {
 
@@ -12,31 +13,34 @@ class FieldsPlugin {
 			extraDirsToWatch: [],
 			ignore: []
 		}, options);
+
+		// Set for Later
+		this.modifiedFiles = []
+		this.foldersToIgnore = []
+		this.directoriesToWatch = []
 	}
 
-	addAdditionalDirectoriesToWatch(compilation) {
+	listExtraDirectoriesToWatch({ baseDirPath }) {
+		let toWatch = []
+		// Get from options
 		let watchDirs = this.options.extraDirsToWatch
 		watchDirs = Array.isArray(watchDirs) ? watchDirs : watchDirs.split(',')
-
-		watchDirs.forEach(dir => {
-			let context = path.resolve(compilation.options.context, dir)
-			compilation.contextDependencies.add(context)
-		})
+		// Return
+		watchDirs
+			.forEach(context => { toWatch.push(path.resolve(baseDirPath, context)) })
+		return [... new Set(toWatch.filter(d => !!d))]
 	}
 
-	defineFoldersToIgnore(compilation) {
+	listFoldersToIgnore({ baseDirPath }) {
 		let ignore = []
 		// Get from options
 		let ignoreDirs = this.options.ignore
 		ignoreDirs = Array.isArray(ignoreDirs) ? ignoreDirs : ignoreDirs.split(',')
-		// Add Defaults
-		ignoreDirs = ignoreDirs.concat(['./dist/**', './node_modules/**'])
-		// Reolve
-		ignoreDirs.forEach(i => {
-			ignore.push(path.resolve(compilation.options.context, i))
-		})
 		// Return
-		return [... new Set(ignore)]
+		ignoreDirs
+			.concat(['./dist/**', './node_modules/**'])
+			.forEach(context => { ignore.push(path.resolve(baseDirPath, context)) })
+		return [... new Set(ignore.filter(d => !!d))]
 	}
 
 	async clearFieldsJson(compilation) {
@@ -53,26 +57,37 @@ class FieldsPlugin {
 
 	async apply(compiler) {
 
+		// Set 
+		let isFirstCompile = true
+		this.foldersToIgnore = this.listFoldersToIgnore({ baseDirPath : compiler.context })
+		this.directoriesToWatch = this.listExtraDirectoriesToWatch({ baseDirPath: compiler.context })
+
 		// Clear out any old fields.json files before compiler runs.
 		// This is to ensure that we dont end up with duplicate fields.
-		compiler.hooks.run.tapPromise('FieldsPlugin', this.clearFieldsJson);
-		compiler.hooks.watchRun.tapPromise('FieldsPlugin', this.clearFieldsJson);
-		compiler.hooks.emit.tapPromise('FieldsPlugin', this.clearFieldsJson);
+		compiler.hooks.run.tapPromise(pluginName, this.clearFieldsJson);
+		compiler.hooks.watchRun.tapPromise(pluginName, this.clearFieldsJson);
+		compiler.hooks.emit.tapPromise(pluginName, this.clearFieldsJson);
+
+		// When watching, update the modie
+		compiler.hooks.watchRun.tap(pluginName, compilation => {
+			this.modifiedFiles = compilation.modifiedFiles ? Array.from(compilation.modifiedFiles) : [];
+        });
+
+		// Set Extra directories to watch
+		compiler.hooks.afterCompile.tap(pluginName, compilation => {
+			this.directoriesToWatch.forEach(dir => { compilation.contextDependencies.add(dir) })
+		})
 
 		// Transform the fields.json
-		compiler.hooks.afterEmit.tapPromise('FieldsPlugin', async compilation => {
-
+		compiler.hooks.afterEmit.tapPromise(pluginName, async compilation => {
+			const webpackLogger = compiler.getInfrastructureLogger(pluginName);
 			let webpackRoot = compilation.options.context
 			let srcFolder = path.resolve(webpackRoot, this.options.src);
 			let distFolder = compilation.options.output.path;
 
-			// Setup
-			this.addAdditionalDirectoriesToWatch(compilation)
-			let ignore = this.defineFoldersToIgnore(compilation)
-
 			// Handle fields.js file
 			return await new Promise((resolve, reject) => {
-				let files = glob.sync(`${srcFolder}/**/fields.js`, { ignore })
+				let files = glob.sync(`${srcFolder}/**/fields.js`, { ignore: this.foldersToIgnore })
 
 				// Find every modules fields.js file.
 				files.forEach((JsSrcFullPath) => {
@@ -81,7 +96,24 @@ class FieldsPlugin {
 						// Get the module path for matching
 						let fileUniqueKey = JsSrcFullPath.split("/").slice(-2).join('/');
 						// Get the path from the DIST folder for the asset
-						let JsDistRelativePath = Object.keys(compilation.assets).find(a => a.endsWith(fileUniqueKey))
+						let JsDistRelativePath = Object.keys(compilation.assets).find(a => a.endsWith(fileUniqueKey)) || ''
+						// If JS file was found in the emitted assets then we should handle it for webpack 
+						let fileWasEmitted = (Array.from(compilation.emittedAssets).indexOf(JsDistRelativePath) > -1)
+						let shouldTransform = fileWasEmitted || isFirstCompile;
+						// Check if a file in one of our additional directories was modified
+						if (!shouldTransform) {
+							shouldTransform = this.modifiedFiles.some(path => {
+								return (this.directoriesToWatch.indexOf(path) > -1)
+							})
+						}
+
+						// Exit here
+						if (!shouldTransform) { return;}
+
+						// Use the Logger interface like HubSpot
+						webpackLogger.info(`FieldsJS is tranforming ${path.relative(srcFolder,JsSrcFullPath)}`);
+						
+						// Get path for json file in dis
 						let JsonDistRelativePath = JsDistRelativePath.replace('fields.js', 'fields.json');
 						// Get Final Paths
 						let JsonDistFullPath = path.resolve(distFolder, './' + JsonDistRelativePath);
@@ -89,17 +121,20 @@ class FieldsPlugin {
 						let fields = require(JsSrcFullPath);
 						// Transform to Json and append to fields.json file
 						FieldTransformer.transform(JsonDistFullPath, fields);
-
-						// If the file is not yet added to emittedAssets then handle it now so fields.js is not uploaded to HubSpot
-
-						if (!compilation.emittedAssets[JsDistRelativePath]) {
-							// remove fields.js from assets because hsAutouploadPlugin looks for this to be emitted: true in order to upload
-							delete compilation.assets[JsDistRelativePath];
-							// remove fields.js from emittedAssets Set
-							compilation.emittedAssets.delete(JsDistRelativePath)
-							// add json version to emittedAssets set. Functionally tricks AutoUplaoder into thinking that this file was updated as part of the actual webpack process
-							compilation.emittedAssets.add(JsonDistRelativePath)
+						
+						// Handle it now so fields.js is not uploaded to HubSpot  because hsAutouploadPlugin looks for this to be emitted: true in order to upload
+						delete compilation.assets[JsDistRelativePath];
+						// Add in the newly created json into assets so hubSpot will report it
+						compilation.assets[JsonDistRelativePath] = {
+							size: function () { return Buffer.byteLength(JsonDistFullPath) },
+							source: function () { return Buffer.from(JsonDistFullPath) },
+							existsAt: JsonDistFullPath,
+							emitted: true
 						}
+						// remove fields.js from emittedAssets Set
+						compilation.emittedAssets.delete(JsDistRelativePath)
+						// add json version to emittedAssets set. Functionally tricks AutoUplaoder into thinking that this file was updated as part of the actual webpack process
+						compilation.emittedAssets.add(JsonDistRelativePath)
 
 						// Remove field.js file from dist directory.
 						let JsDistFullPath = path.resolve(distFolder, './' + JsDistRelativePath);
@@ -113,7 +148,8 @@ class FieldsPlugin {
 					}
 
 				});
-
+				
+				isFirstCompile = false
 				resolve();
 			});
 
