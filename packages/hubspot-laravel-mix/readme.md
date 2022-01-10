@@ -2,7 +2,7 @@
 
 This is a Laravel Mix Extension for HubSpot Local Development
 
-```
+```javascript
 let mix = require('laravel-mix');
 (require('@igomoon/hubspot-laravel-mix')(mix))
 ```
@@ -21,6 +21,11 @@ let mix = require('laravel-mix');
 		"laravel-mix": "^6.0.39"
 	}
 }
+```
+
+You can use "hsSilent" to mute the HubSpot Logger Information
+```bash
+mix watch -- --env hsAutoUpload=true "hsSilent=true"
 ```
 
 ### [Example webpack.mix.js](examples/webpack.mix.js)
