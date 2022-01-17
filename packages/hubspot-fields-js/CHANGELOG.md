@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.1] - 2022-11-01
+- Update Readme Links
 
 ## [1.3.0] - 2022-11-01
 - FIX: Recent changes to the compilation assets, were prevent assets from being emitted to the HubSpotAutoUploadPlugin for upload.
