@@ -2,7 +2,7 @@
 	"name": "@igomoon/hubspot-laravel-mix",
 	"label": "hubspot-laravel-mix",
 	"author": "iGoMoon",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"license": "Apache-2.0",
 	"repository": {
 		"type": "git",

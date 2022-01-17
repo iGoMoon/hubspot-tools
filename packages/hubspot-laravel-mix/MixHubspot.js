@@ -5,9 +5,10 @@ class MixHubspot {
 	name() { return ['hubspot']; }
 	
 	dependencies() {
+		// NOTE: @hubspot/webpack-cms-plugins will not resolve due to an missing "main" definition in its package json
 		return [
 			'copy-webpack-plugin@^8.1.1',
-			'@hubspot/webpack-cms-plugins/HubSpotAutoUploadPlugin@^3.0.9',
+			//'@hubspot/webpack-cms-plugins@^3.0.9',
 			'@igomoon/hubspot-fields-js@^1.3.0',
 			'webpack-build-notifier@^2.1.1'
 		];
@@ -20,6 +21,14 @@ class MixHubspot {
 	boot() {
 		if (!!this.Notifications) {
 			this.context.config.notifications = false;
+		}
+
+		// Ad help text to help resolve the HubSpot package error
+		try {
+			require(this.context.resolve('@hubspot/webpack-cms-plugins/HubSpotAutoUploadPlugin'));
+		} catch(e){
+			throw "Due to an error within the current version of the `@hubspot/webpack-cms-plugins` package, it is unable to be installed by Laravel Mix automatically. If it was not completed on your initial npm installation then you should run `npm install @hubspot/webpack-cms-plugins --save-dev` and then run Mix again."
+			process.exit()
 		}
 	}
 

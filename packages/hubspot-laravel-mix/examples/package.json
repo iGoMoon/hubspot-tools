@@ -6,6 +6,7 @@
 		"deploy": "mix --production -- --env hsAutoUpload=true"
 	},
 	"devDependencies": {
+		"@hubspot/webpack-cms-plugins": "^3.0.9",
 		"@igomoon/hubspot-laravel-mix": "^1.0.0",
 		"laravel-mix": "^6.0.39"
 	}
