@@ -6,6 +6,8 @@ class Group extends ModuleField {
         super();
         this.data = Object.assign({
             "name": "group",
+			// "tab" : "STYLE" // Can only be used when you want to create a style Field.
+				// https://developers.hubspot.com/docs/cms/building-blocks/module-theme-fields-overview#style-fields
             "label": "Group",
             "required": false,
             "locked": false,
