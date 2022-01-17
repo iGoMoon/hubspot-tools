@@ -879,7 +879,7 @@ module.exports = function () {
 ```javascript
 const { Field } = require("@igomoon/hubspot-fields-js");
 
-// Pull in the Partial (IMPROTANT: Relative to the modules final destination in the dist folder) 
+// Pull in the Partial (IMPORTANT: Relative to the modules final destination in the dist folder) 
 let cssID = require('../../../src/fields/cssID');
 
 module.exports = [
@@ -897,7 +897,7 @@ module.exports = [
 ```javascript
 const { Group, Field } = require("@igomoon/hubspot-fields-js");
 
-// Pull in the Partial (IMPROTANT: Relative to the modules final destination in the dist folder) 
+// Pull in the Partial (IMPORTANT: Relative to the modules final destination in the dist folder) 
 let cssID = require('../../../src/fields/cssID');
 
 module.exports = [
