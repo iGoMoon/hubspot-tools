@@ -15,7 +15,7 @@ const randomId = () => {
  * @param {object} args to pass in 
  */
 const parseArgs = (defaults = {}, args = {}) => {
-    return Object.assign(defaults, args)
+	return Object.assign({}, defaults, args)
 }
 
 module.exports = {
