@@ -129,8 +129,12 @@ class MixHubspot {
 								Object.entries(compilation.assets).forEach(([path, data]) => {
 									if (path.substring(0, 1) !== '/') { return }
 									let newPath = path.substring(1)
+									// Update Assets
 									delete compilation.assets[path]
 									compilation.assets[newPath] = data
+									// Update Emitted
+									compilation.emittedAssets.delete(path)
+									compilation.emittedAssets.add(newPath)
 								})
 							})
 						}

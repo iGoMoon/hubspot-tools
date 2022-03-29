@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.2] - 2022-03-29
+- Add Fixed path files to emittedAssets as they weren't triggering emits
+
 ## [1.0.1] - 2022-01-18
 - Add in console message for `@hubspot/webpack-cms-plugins` reoslution issue
 	- NOTE: @hubspot/webpack-cms-plugins will not resolve due to an missing "main" definition in its package json
