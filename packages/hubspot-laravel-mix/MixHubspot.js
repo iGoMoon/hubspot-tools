@@ -54,7 +54,7 @@ class MixHubspot {
 			// Change Dist Folder
 			webpackConfig.output.path = path.resolve(this.context.paths.rootPath,this.Upload.outputFolder)
 			// Change Logger Interface level
-			if (this.isAutoUpload && !this.isHsSilent) {
+			if (!!this.FieldsJs || (this.isAutoUpload && !this.isHsSilent)) {
 				webpackConfig.infrastructureLogging = { level: 'info' }	
 			}
 		}

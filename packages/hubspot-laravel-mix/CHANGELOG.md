@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.3] - 2022-04-08
+- Make sure infrastucture shows FieldsJs information
 ## [1.0.2] - 2022-03-29
 - Add Fixed path files to emittedAssets as they weren't triggering emits
 
