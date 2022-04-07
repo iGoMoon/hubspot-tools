@@ -5,57 +5,91 @@ const fs = require('fs');
 const {
 	getAbsPathFromCurrent,
 	getBasename,
-	checkIsDirectory
+	checkIsDirectory,
+	getExt
 } = require('../util/path');
 
 /* ---- Directories --------------------- */
 
-const handleDirectory = ({ pathToDir, watch = false, initial = false }) => {
+const handleDirectory = ({ pathToDir, watch = false, initial = false, extraDirsToWatch = [], ignore = [] }) => {
 	if (watch) {
-		return transformDirectoryWatch({ pathToDir, initial })
+		return transformDirectoryWatch({
+			pathToDir,
+			initial,
+			extraDirsToWatch,
+			ignore
+		})
 	}
 	return transformDirectoryOnce({ pathToDir })
 }
 
 const transformDirectoryOnce = ({ pathToDir }) => {
-	let fullPathToDir = getAbsPathFromCurrent(pathToDir);
-	if (!checkIsDirectory(fullPathToDir)) { return; }
+	pathToDir = getAbsPathFromCurrent(pathToDir);
+	if (!checkIsDirectory(pathToDir)) { return; }
 	
-	let files = getFilesToTransform({ fullPathToDir })
+	let files = getFilesToTransform({ pathToDir })
 	files.forEach(filepath => {
-		maybeTransformFile(fullPathToDir, filepath)
+		maybeTransformFile({ pathToDir, filepath })
 	})
 }
 
-const transformDirectoryWatch = ({ pathToDir, initial = false }) => {
-	let fullPathToDir = getAbsPathFromCurrent(pathToDir);
+const transformDirectoryWatch = ({ pathToDir, initial = false, extraDirsToWatch = [], ignore = [] }) => {
+	pathToDir = getAbsPathFromCurrent(pathToDir);
 
-	if (!checkIsDirectory(fullPathToDir)) { return; }	
+	if (!checkIsDirectory(pathToDir)) { return; }
+
+	// Get full path for ignores
+	ignore = ignore.map(i => getAbsPathFromCurrent(i))
+	extraDirsToWatch = extraDirsToWatch
+		.map(d => getAbsPathFromCurrent(d))
+		.filter(d => checkIsDirectory(d))
 	
 	const { watch } = require('./watch');
 	try {
-		
-		watch({ src: fullPathToDir, initial })
-			.on('add', filepath => maybeTransformFile(fullPathToDir,filepath))
-			.on('change', filepath => maybeTransformFile(fullPathToDir, filepath))
+		watch({
+			src: [pathToDir].concat(extraDirsToWatch),
+			opts: {
+				ignoreInitial : !initial,
+				ignored : ignore
+			}
+		})
+		.on('all', (type, filepath) => {
+			if (['add', 'change'].indexOf(type) > -1) {
 
-		console.log(chalk.yellow(`Now watching ${fullPathToDir}\n`))
+				// Is in one of our extra dirs to watch
+				let isInExtraDir = extraDirsToWatch.some(d => filepath.includes(d))
+				if (isInExtraDir && getExt(filepath) == 'js') {
+					transformDirectoryOnce({ pathToDir })
+					return;
+				}
+				
+				// Otherwise proceed
+				maybeTransformFile({
+					pathToDir,
+					filepath,
+					extraDirsToWatch
+				})
+			}
+		})
+
+		// Notify
+		console.log(chalk.yellow(`Now watching ${pathToDir}\n`))
 	
 	} catch (e) {
 		console.log(e)
 	}
 }
 
-const getFilesToTransform = ({ fullPathToDir, ignore = [], absolute = true }) => {
-	return glob.sync(`${fullPathToDir}/**/*fields.js`, { ignore, absolute })
+const getFilesToTransform = ({ pathToDir, ignore = [], absolute = true }) => {
+	return glob.sync(`${pathToDir}/**/*fields.js`, { ignore, absolute })
 }
 
 /* ---- File ---------------------------- */
 
-const maybeTransformFile = (srcPath, filepath) => {
-	if (ignoreFile(filepath)) { return; }
+const maybeTransformFile = ({ pathToDir, filepath }) => {
+	if (!filepath || ignoreFile(filepath)) { return; }
 
-	let relative = path.relative(srcPath, filepath)
+	let relative = path.relative(pathToDir, filepath)
 	if (transformFileToJson(filepath)) {
 		console.log(chalk.green(`Transformed ${relative} > fields.json successfully.`))
 	}

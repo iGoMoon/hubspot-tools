@@ -6,8 +6,8 @@ const chokidar = require('chokidar');
 	//.on('add', async (filePath) => { })
 	//.on('change', async (filePath) => {});
 
-const watch = ({ src, initial = false }) => {
-	return chokidar.watch(src, { ignoreInitial: !initial });
+const watch = ({ src, opts = {} }) => {
+	return chokidar.watch(src,opts);
 }
 
 module.exports = {

@@ -9,9 +9,11 @@ program
 	.option('--src <srcDirectory>', 'eg. --src="./src" - Relative path from your current working directory to the directory your files are in. Defaults to current directory.')
 	.option('-w,--watch', 'Watch a directory on your computer for changes and transform the fields.js files')
 	.option('-i,--initial', 'Transform fields.js when first initiating the watcher')
+	.option('--extra <directory,directory>', 'eg. --extra="src/fields" - Additional directories to watch for js files. Separated by a comma')
+	.option('--ignore <glob,glob>', 'eg. --ignore="src/other/**" - Directories to ignore when watching for changes. Separated by a comma')
 	.parse(process.argv);
 
-const { src, watch, initial } = program.opts()
+const { src, watch, initial, extra, ignore } = program.opts()
 
 const { handleDirectory } = require('../src/lib/FieldTransformer');
 const { checkHsIgnore } = require('../src/lib/hsIgnore');
@@ -25,4 +27,6 @@ const { checkHsIgnore } = require('../src/lib/hsIgnore');
 		watch				: !!watch,
 		initial				: !!watch && !!initial,
 		extraDirsToWatch	: (extra ? extra.split(',') : []),
+		ignore 				: (ignore ? ignore.split(',') : [])
+	})
 })()
