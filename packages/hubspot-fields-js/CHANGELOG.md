@@ -2,6 +2,91 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0] - 2022-04-08
+
+### .hsignore File checker
+If you attempt to upload a fields.js file to HubSpot, you will receive anm error. The solution to this is to add "fields.js" to your .hsignore file.
+
+To make this easier, a simple check will be performed for you, when the `transform` command is run. 
+
+### FieldsJs CLI
+
+-  FieldsJs CLI options now includes additional options
+	- `--src`: Relative path from your current working directory to the directory your files are in. Defaults to current directory.
+		- Will transform all `fields.js` files within this folder
+	- `--watch|-w`: Watches the src and "extra" directories and will transform when a change is detected.
+	- `--initial|-i`: **WATCH ONLY** - Will transform the fields.js files found when the watcher is first initiated.
+	- `--extra`: **WATCH ONLY** - Comma separated list of relative paths from current folder to watch for changes.
+		- Will transform transform **all fields.js** files when a change is detected in a js file within this directory
+	- `--ignore`: **WATCH ONLY** - Comma separated list of [glob patterns](https://www.npmjs.com/package/glob) to ignore
+ 
+#### Global Installation
+`npm i @igomoon/hubspot-fields-js -g`
+#### Examples
+- `fields transform --src="./src"`
+	- Transform **fields.js** files within `./src`
+- `fields transform --src="./src" -w`
+	- Transform **fields.js** files within `./src` and watch for changes
+- `fields transform --src="./src" -w -i`
+	- Transform **fields.js** files within `./src` and watch for changes
+	- Transform when watcher is first initiated.
+- `fields transform --src="./src" --extra="src/fields/" -w`
+	- Transform **fields.js** files within `./src` and watch for changes
+	- Watch for changes to **.js** files within `./src/fields` and transform **all fields.js** files when a change is detected
+- `fields transform --src="./src" ----ignore="src/ignore/**" -w`
+	- Transform **fields.js** files within `./src` and watch for changes
+	- Ignores all changes within `src/ignore` and will NOT transform **fields.js** files within that folder
+
+### Array Flattening
+FieldsJS previously required your fields.js file to export an array of FieldsJs objects, so they can be converted to json that HubSpot expects for upload.
+
+You can now include and import fields "sets" of fields as arrays and they will be flattened into a valid HubSpot fields.json array.
+
+#### Example 
+
+Example `fields.js` within a module.
+```javascript
+const { Field } = require("@igomoon/hubspot-fields-js");
+module.exports = [
+	Field.text().name("title","Title"),
+
+	// array set of fields
+	[
+		Field.richText().name("text","Text"),
+
+		// array sub-set of fields
+		[
+			Field.richText().name("text2","Text2")
+		]
+	]
+]; 
+```
+
+becomes:
+```json
+[
+    {
+        "name": "title",
+        "label": "Title",
+        "type": "text",
+		"..." : "..."
+    },
+    {
+        "name": "text",
+        "label": "Text",
+        "type": "richtext",
+		"..." : "..."
+    },
+    {
+        "name": "text2",
+        "label": "Text2",
+        "type": "richtext",
+		"..." : "..."
+    }
+]
+```
+
+
 ## [1.4.0] - 2022-02-04
 - Abstraction of methods
 	- Now includes CLI command and webapck plugins within this single package
