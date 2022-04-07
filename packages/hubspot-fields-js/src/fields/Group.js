@@ -1,4 +1,5 @@
 const ModuleField = require('./ModuleField');
+const { transformDataToJson } = require('../lib/FieldTransformer')
 
 class Group extends ModuleField {
 
@@ -22,12 +23,7 @@ class Group extends ModuleField {
      * Return field as JSON
      */
 	toJSON() {
-		this.data.children = this.data.children.filter(c => !!c)
-		this.data.children
-			.map(child => {
-				return child.toJSON();
-			});
-
+		this.data.children = transformDataToJson(this.data.children.filter(c => !!c))
         return this.data
     }
 

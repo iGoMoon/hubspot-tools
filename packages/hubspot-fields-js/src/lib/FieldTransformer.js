@@ -146,12 +146,37 @@ const transformDataToJson = (fields) => {
 	// Transform all fields in array toJSON()
 	return fields
 		.filter(c => validateField(c))
+		.reduce(reduceNestedFieldArrays,[])
 		.map(field => transformFieldToJson(field));
 }
 
 // Validate Field
 const validateField = (field) => {
 	return !!field && typeof field == 'object'
+}
+
+// Reduce Nested Arrays of Fields
+const reduceNestedFieldArrays = (previous, current, index, array) => {
+	if (Array.isArray(current)) {
+
+		current.forEach(f => {
+			if (Array.isArray(f)) {
+				let reducedRecursion = f.reduce(reduceNestedFieldArrays,[])
+				if (Array.isArray(reducedRecursion)) {
+					reducedRecursion.forEach(fr => {
+						previous.push(fr)
+					})
+				} else {
+					previous.push(f)
+				}
+			} else {
+				previous.push(f)
+			}
+		})
+	} else {
+		previous.push(current)
+	}
+	return previous
 }
 
 // Transform single field into JSON using the toJSON method
