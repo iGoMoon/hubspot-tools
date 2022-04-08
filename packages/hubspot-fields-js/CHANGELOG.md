@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.2] - 2022-04-08
+- Fix FieldsPlugin key
+
 ## [1.5.1] - 2022-04-08
 - Fix Readme Version Badge
 

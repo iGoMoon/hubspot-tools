@@ -109,7 +109,7 @@ class FieldsPlugin {
 
 				// Get Files
 				let files = getFilesToTransform({
-					fullPathToDir: srcFolder,
+					pathToDir: srcFolder,
 					ignore: this.foldersToIgnore
 				})
 
