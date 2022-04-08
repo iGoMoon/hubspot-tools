@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.1] - 2022-04-08
+- Fix Readme Version Badge
+
 ## [1.5.0] - 2022-04-08
 
 ### .hsignore File checker
