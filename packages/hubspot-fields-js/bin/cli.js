@@ -9,5 +9,8 @@ program
 		executableFile: './transform',
 		isDefault : true
 	})
+	.command('test', 'Test New Setup', {
+		executableFile: './test-new'
+	})
 
 program.parse(process.argv);
