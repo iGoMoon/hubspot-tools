@@ -31,8 +31,8 @@
 	constructor(data) {
 		this.data = Object.assign({
 			type: "",
-			name: "field",
-			label: "Field",
+			name: "",
+			label: "",
 			required: false,
 			locked: false,
 			inline_help_text: "",
