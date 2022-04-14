@@ -51,6 +51,15 @@
 	}
 
     /**
+     * Will Prevent this field from being transformed
+     * @param {Boolean} flag
+     */
+	dontTransform(flag = true) {
+        this.data.dontTransform = !!flag;
+        return this;
+	}
+
+    /**
      * Set any key.
      * @param {string} key 
      * @param {string} value 
@@ -92,7 +101,7 @@
         this.data.id = id;
         return this;
 	}
-
+	 
     /**
      * Determines if the field can be left blank in the editor. If true, content will not be allowed to publish without filling out this field.
      * @param {boolean}

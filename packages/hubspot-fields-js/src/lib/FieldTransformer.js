@@ -186,7 +186,10 @@ const transformDataToJson = (fields) => {
 
 // Validate Field
 const validateField = (field) => {
-	return !!field && !!field.data?.type && typeof field == 'object'
+	return !!field &&
+		!!field.data?.type &&
+		!field.data?.dontTransform &&
+		typeof field == 'object';
 }
 
 // Reduce Nested Arrays of Fields
