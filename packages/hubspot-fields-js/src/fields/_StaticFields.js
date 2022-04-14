@@ -111,6 +111,12 @@ module.exports = class _StaticFields extends _HublField {
 	static form = (overrides = {}) => new (require('./Form'))(overrides);
 
 	/**
+	 * Gradient field
+ 	 * @deprecated {@since 2.0.0} Instantiate the class for this field type instead: `new Gradient()`
+	 */
+	static gradient = (overrides = {}) => new (require('./Gradient'))(overrides);
+
+	/**
 	 * HubDB Row field
  	 * @deprecated {@since 2.0.0} Instantiate the class for this field type instead: `new HubdbRow()`
 	 */

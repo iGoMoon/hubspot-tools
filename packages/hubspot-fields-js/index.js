@@ -36,6 +36,7 @@ module.exports = {
     FollowUpEmail: require('./src/fields/FollowUpEmail'),
     Font: require('./src/fields/Font'), // Theme + Style
     Form: require('./src/fields/Form'),
+    Gradient: require('./src/fields/Gradient'),
     HubdbRow: require('./src/fields/HubdbRow'), // CMS Hub Professional and Enterprise.
     HubdbTable: require('./src/fields/HubdbTable'), // CMS Hub Professional and Enterprise.
     Icon: require('./src/fields/Icon'), // Style
