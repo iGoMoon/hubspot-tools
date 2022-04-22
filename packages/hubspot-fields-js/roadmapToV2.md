@@ -161,10 +161,10 @@ new Style([
 		- [] Correct URLs
 		- [] Style URL
 - [] Number
-	- [] Type
-	- [] Name and Label
-	- [] Default Method
-	- [] Additional Parameters
+	- [X] Type
+	- [X] Name and Label
+	- [X] Default Method
+	- [X] Additional Parameters
 	- [] Helper Methods
 	- [] Documentation
 		- [] Correct URLs
@@ -187,7 +187,7 @@ new Style([
 	- [] Documentation
 		- [] Correct URLs
 		- [] Style URL Text
-- [] SF
+- [] SF Campaign
 	- [] Type
 	- [] Name and Label
 	- [] Default Method

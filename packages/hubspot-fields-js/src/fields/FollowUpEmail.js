@@ -50,7 +50,7 @@ module.exports = class FollowUpEmail extends _HublField {
 	 * @param {FollowupEmailDefault} emailId The default selected Email. {@link https://app.hubspot.com/l/email}
 	 */
 	default(emailId = null) {
-		return this.default(emailId || this.data.default || null)
+		return this.data.default = (emailId || this.data.default || null)
 	}
 
 }

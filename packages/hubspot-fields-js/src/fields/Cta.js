@@ -50,7 +50,7 @@ module.exports = class Cta extends _HublField {
 	 * @param {CtaDefault} ctaId The default selected CTA. Expects a CTA id which can be found in the URL when editing a CTA in the CTA manager. {@link https://app.hubspot.com/l/ctas}
 	 */
 	default(ctaId = null) {
-		return this.default(ctaId || this.data.default || null)
+		return this.data.default = (ctaId || this.data.default || null)
 	}
 
 }
