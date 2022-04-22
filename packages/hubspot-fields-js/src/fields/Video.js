@@ -23,9 +23,6 @@ module.exports = class Video extends _HublField {
     // this.show_advanced_options = !!data.show_advanced_options;
 
 	/*
-	this.supported_types = data.supported_types?.map(type => type.toUpperCase?.()) || [
-      'EXTERNAL', 'CONTENT', 'FILE', 'EMAIL_ADDRESS', 'BLOG'
-    ];
     if (this.default?.conversion_asset?.type) {
       this.default.conversion_asset.type = this.default.conversion_asset.type.toUpperCase?.(); 
     }
@@ -35,3 +32,18 @@ module.exports = class Video extends _HublField {
 	*/
 
 }
+
+
+/**
+ * Video fields provide content editors with a place to add HubSpot Video to their module content without the need of using rich text fields.
+ * @see {@link https://developers.hubspot.com/en/docs/cms/building-blocks/module-theme-fields#video}
+ * @param {object} data The JSON data used to generate the field.
+ * @param {object} [data.default] Video object with settings for "player_id", "height", "width", "size_type", "conversion_asset", "loop_video", "mute_by_default", "autoplay",  and "hide_control". // @todo Document subproperties
+ * @param {object} [data.default.conversion_asset] // @todo
+ * @param {('FORM'|'CTA'|'')} [data.default.conversion_asset.type=''] Accepts either 'FORM', 'CTA', or ''.
+ * @param {string} [data.default.conversion_asset.id=''] The id of the Form or CTA type.
+ * @param {('PRE'|'POST')} [data.default.conversion_asset.position=''] Whether the conversion asset should be shown before the video starts or after it ends. Accepts either "PRE" or "POST".
+ * @param {boolean} [data.resizable=true] // @todo
+ * @param {boolean} [data.show_advanced_options=false] Whether content creators can see advanced default options.
+ * @param {boolean} [data.show_preview=true] // @todo
+ */

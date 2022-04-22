@@ -1,11 +1,13 @@
 const _HublField = require('./_HublField');
 
 /**
+ * @typedef {('select'|'radio'|'checkbox')} ChoiceDisplay
+ * 
  * @typedef {Object} ChoiceDefinition
- * @property {Array<Array<string>>} choices Array of value and label pairs. Values are listed first. {@example: [['value 1', 'Label 1'], ['value 2', 'Label 2']]}
  * @property {String} default Sets the default selected value from the choice array.
+ * @property {Array<Array<string>>} choices Array of value and label pairs. Values are listed first. {@example: [['value 1', 'Label 1'], ['value 2', 'Label 2']]}
+ * @property {ChoiceDisplay} display Set the field's appearance. When not including multiple, you can set this as either "radio" or "select". When multiple is set to true, you can set this as either "checkbox" or "select".
  * @property {Boolean} multiple Optional. To allow multiple options to be selected, set the value to true. 
- * @property {('select'|'radio'|'checkbox')} display Set the field's appearance. When not including multiple, you can set this as either "radio" or "select". When multiple is set to true, you can set this as either "checkbox" or "select".
  * 
  * @typedef {_HublField.FieldType & ChoiceDefinition} ChoiceType
  * Combine into complete definition for Choice
@@ -40,15 +42,25 @@ module.exports = class Choice extends _HublField {
 			// Name and Label
 			name: this.data.name || 'choice_field',
 			label: this.data.label || 'Choice field',
-
-			// Additional Keys
-			choices: this.data.choices || [ [ 'value 1', 'Example Label 1' ], [ 'value 2', 'Example Label 2' ] ],
 		});
+
+		// Default Choices
+		this.choices(this.data.choices || [ [ 'value 1', 'Example Label 1' ], [ 'value 2', 'Example Label 2' ] ])
 	}
 
 	/**
+     * Set children for choice.
+     * @param {Array<Array<string>>} choices Array of value and label pairs. Values are listed first.
+	 * @example [['value 1', 'Label 1'], ['value 2', 'Label 2']]}
+     */
+	choices(choices = []) {
+		this.data.choices = choices;
+		return this;
+    }
+
+	/**
 	 * Set display type
-	 * @param {('select'|'radio'|'checkbox')} display Set the field's appearance. When not including multiple, you can set this as either "radio" or "select". When multiple is set to true, you can set this as either "checkbox" or "select".
+	 * @param {ChoiceDisplay} display Set the field's appearance. When not including multiple, you can set this as either "radio" or "select". When multiple is set to true, you can set this as either "checkbox" or "select".
 	 */
 	display(display) {
 		display = display?.toLowerCase()
@@ -60,16 +72,14 @@ module.exports = class Choice extends _HublField {
 	 * Set display type as select
 	 */
     select() {
-        this.display('select');
-        return this;
+        return this.display('select');
 	}
 
 	/**
 	 * Set display type as radio if single or checkbox if multiple select
 	 */
     radio() {
-        this.display(this.data.multiple ? 'checkbox' : 'radio');
-        return this;
+        return this.display(this.data.multiple ? 'checkbox' : 'radio');
 	}
 
 	/**
@@ -77,8 +87,7 @@ module.exports = class Choice extends _HublField {
 	 * Alias for `radio()`
 	 */
     checkbox() {
-        this.radio();
-        return this;
+        return this.radio();
 	}
 
 	/**
@@ -89,14 +98,5 @@ module.exports = class Choice extends _HublField {
         this.data.multiple = !!flag;
         return this;
 	}
-
-	/**
-     * Set children for choice.
-     * @param {Array<Array<string>>} choices Array of value and label pairs. Values are listed first. {@example: [['value 1', 'Label 1'], ['value 2', 'Label 2']]}
-     */
-	choices(choices = []) {
-		this.data.choices = choices;
-		return this;
-    }
 
 }

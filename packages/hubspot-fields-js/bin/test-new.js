@@ -12,7 +12,7 @@ program
 
 const { src, transform } = program.opts()
 
-const { getFilesToTransform, transformDataToJson } = require('../src/lib/FieldTransformer');
+const { getFilesToTransform, transformDataToJson, handleDirectory } = require('../src/lib/FieldTransformer');
 const { getAbsPathFromCurrent, getBasename, checkIsDirectory, getExt } = require('../src/util/path');
 
 let pathToDir = getAbsPathFromCurrent(src);
@@ -26,5 +26,11 @@ fields = require(files[0]);
 if (!transform) {
 	console.log("Fields"); console.log(fields);
 } else { 
-	console.log("Transformed"); console.log(transformDataToJson(fields));
+	console.log("Transformed"); console.dir(transformDataToJson(fields), { depth: null });
 }
+
+// handle 
+handleDirectory({
+	pathToDir 			: src || '.',
+	watch				: false
+})

@@ -17,6 +17,8 @@ module.exports = class Tag extends _HublField {
 		});
 	}
 
-	////"tag_value": "SLUG",
+	////"tag_value": "SLUG", "ID", "NAME", "ALL"
+	// URL slug for the tag
+	//An object containing the name, unique id, and url slug of the tag
 
 }

@@ -60,6 +60,15 @@
 	}
 
     /**
+     * Set default value of field
+     * @param {*} value 
+     */
+    default(value) {
+        this.data.default = value || null;
+        return this;
+	}
+
+    /**
      * Set any key.
      * @param {string} key 
      * @param {string} value 
@@ -137,15 +146,6 @@
         this.data.help_text = text;
         return this;
     }
-
-    /**
-     * Set default value of field
-     * @param {*} value 
-     */
-    default(value) {
-        this.data.default = value;
-        return this;
-	}
 
     /**
      * Set field Visibility

@@ -43,11 +43,11 @@ module.exports = {
     Image: require('./src/fields/Image'), // Style
     Link: require('./src/fields/Link'),
     Logo: require('./src/fields/Logo'),
-    Meeting: require('./src/fields/Meeting'), // ??
+    Meeting: require('./src/fields/Meeting'),
     Menu: require('./src/fields/Menu'),
     Number: require('./src/fields/Number'), // Style
     Page: require('./src/fields/Page'),
-    Payment: require('./src/fields/Payment'), // ??
+    Payment: require('./src/fields/Payment'),
     RichText: require('./src/fields/RichText'),
     SfCampaign: require('./src/fields/SfCampaign'),
     SimpleMenu: require('./src/fields/SimpleMenu'),

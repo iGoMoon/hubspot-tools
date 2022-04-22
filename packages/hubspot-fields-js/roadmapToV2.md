@@ -2,15 +2,12 @@
 
 [Module and Theme Field Types](https://developers.hubspot.com/docs/cms/building-blocks/module-theme-fields)
 
-- **@todo**: Complete Documentation for all Fields
-	- Using Type Definition to combine (@typedef) and provide Intellisense
-	- Use [Text.js](./src/fields/Text.js) or [Group.js](./src/fields/Group.js)  as Example 
-- **@todo**: Set Defaults are defined with correct schema for all fields
-- **@todo**: Make sure additional keys are set for specific fields
-- **@todo**: Define Helper methods for all Fields
 - **@experimental**: Perform checks so only style fields can be output in a [StyleGroup.js](./src/fields/StyleGroup.js) Field
-- **@todo**: Update Partials to use extend pattern
+- **@experimental**: Only Allow 1 style group
+- **@experimental**: Ceate an `after` method for cleanup
+- **@experimental**: Remove unneccary default methods
 
+- **@todo**: Update Partials to use extend pattern
 ```javascript
 class Style extends Group {
     constructor(children) {
@@ -20,9 +17,245 @@ class Style extends Group {
         ]);
     }
 }
-
 new Style([
     new Text(),
     new Background(),
 ])
 ```
+
+
+-----
+
+### Fields  
+- [X] Alignment
+- [X] Background Image
+- [X] Blog
+- [X] Boolean
+- [X] Border
+- [X] Choice
+- [X] CTA
+- [X] Date
+- [X] Date Time
+- [X] Email
+- [X] File
+- [X] FollowUp Email
+- [X] Meeting
+- [X] Menu
+- [X] Page
+- [X] Color
+
+- [] Crm Object
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL Object
+- [] Crm Object Property
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+- [] Embed
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] Font
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] Form
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] Gradient
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] Group
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] HubDB Row
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL Row
+- [] HubDB Table
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL Table
+- [] Icon
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] Image
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] Link
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] Logo
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] Number
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] Payment
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] Rich
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL Text
+- [] SF
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL Campaign
+- [] Simple
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL Menu
+- [] Spacing
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] Tag
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] Text
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] Text Alignment
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL Alignment
+- [] Url
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] Video
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
