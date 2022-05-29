@@ -1,11 +1,16 @@
 const _HublField = require('./_HublField');
 
 /**
+ * @typedef {string} TextDefault
+ * @typedef {RegExp} TextValidation
+ * @typedef {boolean} TextNewLine
+ * @typedef {boolean} TextShowEmoji 
+ * 
  * @typedef {Object} TextDefinition
- * @property {string} default Default Text to show in Field
- * @property {RegExp} validation_regex Set Validation Regex to test value against on input
- * @property {Boolean} allow_new_line Allow Multiple Lines
- * @property {Boolean} show_emoji_picker Emoji
+ * @property {TextDefault} default Default Text to show in Field
+ * @property {TextValidation} validation_regex Set Validation Regex to test value against on input
+ * @property {TextNewLine} allow_new_line Allow Multiple Lines
+ * @property {TextShowEmoji} show_emoji_picker Emoji
  * 
  * Combine into complete definition for Text
  * @typedef {_HublField.FieldType & TextDefinition} TextType
@@ -37,18 +42,20 @@ module.exports = class Text extends _HublField {
 			
 			// Name and Label
 			name: this.data.name || 'text',
-			label: this.data.label || 'Text',
-			
-			// Additional Keys
-			validation_regex: this.data.validation_regex || '',
-			allow_new_line: !!this.data.allow_new_line,
-			show_emoji_picker: !!this.data.show_emoji_picker
+			label: this.data.label || 'Text'
 		});
+
+		// Additional Keys
+		this.validationRegex(this.data.validation_regex);
+		this.allowNewLine(!!this.data.allow_new_line);
+		this.emojiPicker(!!this.data.show_emoji_picker);
+		// Default
+		this.default(this.data.default)
 	}
 
 	/**
 	 * Set Validation Regex to test value against on input
-	 * @param {RegExp} value
+	 * @param {TextValidation} value
 	 */
 	validationRegex(value) {
         this.data.validation_regex = value || '';
@@ -57,7 +64,7 @@ module.exports = class Text extends _HublField {
 
 	/**
 	 * Set if multiple lines are allowed
-	 * @param {Boolean} flag
+	 * @param {TextNewLine} flag
 	 */
     allowNewLine(flag = true) {
         this.data.allow_new_line = !!flag;
@@ -82,7 +89,7 @@ module.exports = class Text extends _HublField {
 
 	/**
 	 * Set if Emoji Picker should show in Text Field
-	 * @param {Boolean} flag
+	 * @param {TextShowEmoji} flag
 	 */
     emojiPicker(flag = true) {
         this.data.show_emoji_picker = !!flag;
