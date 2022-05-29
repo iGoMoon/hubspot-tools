@@ -81,21 +81,21 @@ module.exports = class Alignment extends _HublField {
 	 * Set alignment direction as both
 	 */
     bothDirections() {
-        return this.display('BOTH');
+        return this.direction('BOTH');
 	}
 
 	/**
 	 * Set alignment direction as Vertical
 	 */
     verticalOnly() {
-        return this.display('VERTICAL');
+        return this.direction('VERTICAL');
 	}
 
 	/**
 	 * Set alignment direction as Horizontal
 	 */
     horizontalOnly() {
-        return this.display('HORIZONTAL');
+        return this.direction('HORIZONTAL');
 	}
 
 }
