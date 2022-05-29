@@ -14,7 +14,7 @@ const _HublField = require('./_HublField');
  * @property {NumberDisplay} display Use a text spinner or a slider to select the number
  * @property {NumberMin} min Minimum number that can be chosen
  * @property {NumberMax} max Maximum number that can be chosen
- * @property {NumberStep} step Increment between number choices
+ * @property {NumberStep} step The step attribute specifies the size of each movement (an increment or jump between values). The step attribute is used to limit down the amount of allowed values. [default=1]
  * @property {NumberSuffix} suffix Added as a suffix to the number field. Note: Using the suffix parameters has no effect on the numerical value of the field.
  * @property {NumberPrefix} prefix Added as a prefix to the number field. Note: Using the prefix parameters has no effect on the numerical value of the field.
  * 
@@ -56,21 +56,18 @@ module.exports = class Number extends _HublField {
 
 		// Additional Params
 		this.display(this.data.display)
+		this.step(this.data.step)
 		// Default
 		this.default(this.data.default)
 	}
-
-	// "display": "text", "slider"
-	// "step": 1,
-	// "min": null,
-	// "max": null
 	
 	/**
 	 * Set Default
 	 * @param {NumberDefault} number
 	 */
 	default(number) {
-		this.data.default = parseInt(number || this.data.default) || null;
+		number = parseInt(number || this.data.default) || 0
+		this.data.default = number || null;
 		return this
 	}
 
@@ -99,6 +96,33 @@ module.exports = class Number extends _HublField {
         this.display('slider');
         return this;
 	}
+
+	/**
+	 * Set the minimum value
+	 * @param {NumberMin} value Minimum number that can be chosen.
+	 */
+	min(value) {
+		this.data.min = !isNaN(value = parseInt(value || this.data.min)) ? value : null;
+        return this;
+	}
+
+	/**
+	 * Set the maximum value
+	 * @param {NumberMax} value Maximum number that can be chosen.
+	 */
+	max(value) {
+		this.data.max = !isNaN(value = parseInt(value || this.data.max)) ? value : null;
+		return this;
+	}
+
+	/**
+	 * Set the step value
+	 * @param {NumberStep} value The step attribute specifies the size of each movement (an increment or jump between values). The step attribute is used to limit down the amount of allowed values.
+	 */
+	step(value) {
+		this.data.step = !isNaN(value = parseInt(value || this.data.step)) ? value : 1;
+		return this;
+	}
 	
 	/**
 	 * Set Prefix
@@ -109,22 +133,15 @@ module.exports = class Number extends _HublField {
 		this.data.prefix = ['string', 'number'].includes(typeof prefix) ? prefix+'' : null;
 		return this
 	}
+	
+	/**
+	 * Set Suffix
+	 * @param {NumberSuffix} suffix Added as a suffix to the number field. Note: Using the suffix parameters has no effect on the numerical value of the field.
+	 */
+	suffix(suffix) {
+		suffix = (suffix || this.data.suffix);
+		this.data.suffix = ['string', 'number'].includes(typeof suffix) ? ''+suffix : null;
+		return this
+	}
 
 }
-
-
-/**
-
- * @param {object} data The JSON data used to generate the field.
- * slider below the input.
- * @param {number} [data.min] The maximum value of the input.
- * @param {number} [data.max] The minimum value of the input.
- * @param {string} [data.prefix] Added as a prefix to the number field. 
- * They are simply for display purposes in the content editor.
- * @param {suffix} [data.suffix] Added as a suffix to the number field. Note: Using the
- * suffix and prefix parameters has no effect on the numerical value of the field.
- * They are simply for display purposes in the content editor.
- * @param {number} [data.step=1] The step attribute specifies the size of each movement
- * (an increment or jump between values). The step attribute is used to limit down the
- * amount of allowed values. // @todo Make sure this works with number input (i.e. can't enter values manually outside of step)
- */
