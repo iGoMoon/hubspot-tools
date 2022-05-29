@@ -27,11 +27,16 @@ new Style([
 -----
 
 ### Fields  
+
+//-- Style
 - [X] Alignment
 - [X] Background Image
+- [X] Border
+- [X] Color
+
+//-- Fields
 - [X] Blog
 - [X] Boolean
-- [X] Border
 - [X] Choice
 - [X] CTA
 - [X] Date
@@ -42,44 +47,12 @@ new Style([
 - [X] Meeting
 - [X] Menu
 - [X] Page
-- [X] Color
+- [X] SF Campaign
+- [X] Number
+- [X] Text
 
-- [] Crm Object
-	- [] Type
-	- [] Name and Label
-	- [] Default Method
-	- [] Additional Parameters
-	- [] Helper Methods
-	- [] Documentation
-		- [] Correct URLs
-		- [] Style URL Object
-- [] Crm Object Property
-	- [] Type
-	- [] Name and Label
-	- [] Default Method
-	- [] Additional Parameters
-	- [] Helper Methods
-	- [] Documentation
-		- [] Correct URLs
-- [] Embed
-	- [] Type
-	- [] Name and Label
-	- [] Default Method
-	- [] Additional Parameters
-	- [] Helper Methods
-	- [] Documentation
-		- [] Correct URLs
-		- [] Style URL
+//-- Style
 - [] Font
-	- [] Type
-	- [] Name and Label
-	- [] Default Method
-	- [] Additional Parameters
-	- [] Helper Methods
-	- [] Documentation
-		- [] Correct URLs
-		- [] Style URL
-- [] Form
 	- [] Type
 	- [] Name and Label
 	- [] Default Method
@@ -97,7 +70,7 @@ new Style([
 	- [] Documentation
 		- [] Correct URLs
 		- [] Style URL
-- [] Group
+- [] Icon
 	- [] Type
 	- [] Name and Label
 	- [] Default Method
@@ -106,7 +79,7 @@ new Style([
 	- [] Documentation
 		- [] Correct URLs
 		- [] Style URL
-- [] HubDB Row
+- [] Spacing
 	- [] Type
 	- [] Name and Label
 	- [] Default Method
@@ -114,8 +87,8 @@ new Style([
 	- [] Helper Methods
 	- [] Documentation
 		- [] Correct URLs
-		- [] Style URL Row
-- [] HubDB Table
+		- [] Style URL
+- [] Text Alignment
 	- [] Type
 	- [] Name and Label
 	- [] Default Method
@@ -123,8 +96,46 @@ new Style([
 	- [] Helper Methods
 	- [] Documentation
 		- [] Correct URLs
-		- [] Style URL Table
-- [] Icon
+		- [] Style URL Alignment
+
+//-- Fields
+- [] Url
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] Video
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] Embed
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] Form
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
+		- [] Style URL
+- [] Group
 	- [] Type
 	- [] Name and Label
 	- [] Default Method
@@ -160,24 +171,6 @@ new Style([
 	- [] Documentation
 		- [] Correct URLs
 		- [] Style URL
-- [] Number
-	- [X] Type
-	- [X] Name and Label
-	- [X] Default Method
-	- [X] Additional Parameters
-	- [] Helper Methods
-	- [] Documentation
-		- [] Correct URLs
-		- [] Style URL
-- [] Payment
-	- [] Type
-	- [] Name and Label
-	- [] Default Method
-	- [] Additional Parameters
-	- [] Helper Methods
-	- [] Documentation
-		- [] Correct URLs
-		- [] Style URL
 - [] Rich
 	- [] Type
 	- [] Name and Label
@@ -187,15 +180,6 @@ new Style([
 	- [] Documentation
 		- [] Correct URLs
 		- [] Style URL Text
-- [] SF Campaign
-	- [] Type
-	- [] Name and Label
-	- [] Default Method
-	- [] Additional Parameters
-	- [] Helper Methods
-	- [] Documentation
-		- [] Correct URLs
-		- [] Style URL Campaign
 - [] Simple
 	- [] Type
 	- [] Name and Label
@@ -205,15 +189,6 @@ new Style([
 	- [] Documentation
 		- [] Correct URLs
 		- [] Style URL Menu
-- [] Spacing
-	- [] Type
-	- [] Name and Label
-	- [] Default Method
-	- [] Additional Parameters
-	- [] Helper Methods
-	- [] Documentation
-		- [] Correct URLs
-		- [] Style URL
 - [] Tag
 	- [] Type
 	- [] Name and Label
@@ -223,7 +198,8 @@ new Style([
 	- [] Documentation
 		- [] Correct URLs
 		- [] Style URL
-- [] Text
+
+- [] Payment
 	- [] Type
 	- [] Name and Label
 	- [] Default Method
@@ -232,7 +208,7 @@ new Style([
 	- [] Documentation
 		- [] Correct URLs
 		- [] Style URL
-- [] Text Alignment
+- [] HubDB Row
 	- [] Type
 	- [] Name and Label
 	- [] Default Method
@@ -240,8 +216,8 @@ new Style([
 	- [] Helper Methods
 	- [] Documentation
 		- [] Correct URLs
-		- [] Style URL Alignment
-- [] Url
+		- [] Style URL Row
+- [] HubDB Table
 	- [] Type
 	- [] Name and Label
 	- [] Default Method
@@ -249,8 +225,8 @@ new Style([
 	- [] Helper Methods
 	- [] Documentation
 		- [] Correct URLs
-		- [] Style URL
-- [] Video
+		- [] Style URL Table
+- [] Crm Object
 	- [] Type
 	- [] Name and Label
 	- [] Default Method
@@ -258,4 +234,12 @@ new Style([
 	- [] Helper Methods
 	- [] Documentation
 		- [] Correct URLs
-		- [] Style URL
+		- [] Style URL Object
+- [] Crm Object Property
+	- [] Type
+	- [] Name and Label
+	- [] Default Method
+	- [] Additional Parameters
+	- [] Helper Methods
+	- [] Documentation
+		- [] Correct URLs
