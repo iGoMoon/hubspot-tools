@@ -10,6 +10,6 @@ module.exports = {
     // Webpack plugin
     FieldsPlugin,
     // Helpers
-	randomId,
-	parseArgs
+    randomId,
+    parseArgs,
 };

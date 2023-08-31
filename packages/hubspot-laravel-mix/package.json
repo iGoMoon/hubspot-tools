@@ -1,23 +1,23 @@
 {
-	"name": "@igomoon/hubspot-laravel-mix",
-	"label": "hubspot-laravel-mix",
-	"author": "iGoMoon",
-	"version": "1.0.4",
-	"license": "Apache-2.0",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/iGoMoon/hubspot-tools"
-	},
-	"engines": {
-		"node": ">=10"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"peerDependencies": {
-		"laravel-mix": ">=6.0.0"
-	},
-	"devDependencies": {
-		"laravel-mix": "^6.0.39"
-	}
+    "name": "@igomoon/hubspot-laravel-mix",
+    "label": "hubspot-laravel-mix",
+    "author": "iGoMoon",
+    "version": "1.0.4",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/iGoMoon/hubspot-tools"
+    },
+    "engines": {
+        "node": ">=10"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "peerDependencies": {
+        "laravel-mix": ">=6.0.0"
+    },
+    "devDependencies": {
+        "laravel-mix": "^6.0.39"
+    }
 }

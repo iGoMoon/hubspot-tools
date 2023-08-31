@@ -1,24 +1,25 @@
 {
-	"name": "@igomoon/hubspot-fields-js",
-	"label": "hubspot-fields-js",
-	"description": "A webpack plugin to generate HubSpot module fields.json files with js",
-	"author": "iGoMoon",
-	"version": "1.5.3",
-	"license": "Apache-2.0",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/iGoMoon/hubspot-tools"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"dependencies": {
-		"chalk": "^4.1.2",
-		"chokidar": "^3.5.3",
-		"commander": "^8.3.0",
-		"glob": "^7.2.0"
-	},
-	"bin": {
-		"fields": "./bin/cli.js"
-	}
+    "name": "@igomoon/hubspot-fields-js",
+    "label": "hubspot-fields-js",
+    "description": "A webpack plugin to generate HubSpot module fields.json files with js",
+    "author": "iGoMoon",
+    "version": "1.5.3",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/iGoMoon/hubspot-tools"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "chalk": "^4.1.2",
+        "chokidar": "^3.5.3",
+        "commander": "^8.3.0",
+        "glob": "^7.2.0"
+    },
+    "bin": {
+        "fields": "./bin/cli.js"
+    },
+    "gitHead": "c9f9aaa3c00dad1b2a6723ff0d05d2785ec06b9a"
 }
