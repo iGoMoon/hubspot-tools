@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.3] - 2022-08-31
+- Fix Visbility keys
+- Support for advanced visibility
+- Support for visibility by access
+
 ## [1.5.2] - 2022-04-08
 - Fix FieldsPlugin key
 
